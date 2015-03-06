@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FacebookSDK/FacebookSDK.h>
+#import <Facebook-iOS-SDK/FacebookSDK/FacebookSDK.h>
 
 FOUNDATION_EXPORT NSString * const HEMFacebookHelperKeyEmail;
 FOUNDATION_EXPORT NSString * const HEMFacebookHelperKeyFirstName;
