@@ -1,0 +1,22 @@
+{
+  "name": "HEMSocial",
+  "version": "0.1",
+  "summary": "Facebook Helper for iOS",
+  "homepage": "https:/github.com/HEmobile/HEMSocial",
+  "license": "MIT",
+  "authors": { 
+    "HE:mobile": "contato@hemobile.com.br" 
+  },
+  "source": {
+    "git": "https://github.com/HEmobile/HEMSocial.git",
+    "branch": "develop"
+  },
+  "source_files": "HEMSocial/*.{h,m}",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "dependencies": {
+    "Facebook-iOS-SDK": []
+  }
+}
