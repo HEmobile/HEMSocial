@@ -58,7 +58,7 @@ NSString * const HEMFacebookHelperKeyVerified       = @"verified";
     return FBSession.activeSession.isOpen;
 }
 
-- (void)closeSession:(HEMFacebookHelperSessionCloseBlockDef)completion
+- (void)closeSession:(HEMFacebookHelperSuccessBlockDef)completion
 {
     if (FBSession.activeSession.isOpen) {
         [FBSession.activeSession closeAndClearTokenInformation];
@@ -68,7 +68,7 @@ NSString * const HEMFacebookHelperKeyVerified       = @"verified";
     completion(YES, nil);
 }
 
-- (void)openSession:(HEMFacebookHelperSessionOpenBlockDef)completion
+- (void)openSession:(HEMFacebookHelperSuccessBlockDef)completion
 {
     [FBSession openActiveSessionWithReadPermissions:self.permissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
         

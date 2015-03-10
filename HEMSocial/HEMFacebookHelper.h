@@ -21,18 +21,50 @@ FOUNDATION_EXPORT NSString * const HEMFacebookHelperKeyTimezone;
 FOUNDATION_EXPORT NSString * const HEMFacebookHelperKeyUpdatedTime;
 FOUNDATION_EXPORT NSString * const HEMFacebookHelperKeyVerified;
 
-typedef void(^HEMFacebookHelperSessionOpenBlockDef)(BOOL isSessionOpened, NSError* error);
-typedef void(^HEMFacebookHelperSessionCloseBlockDef)(BOOL isSessionClosed, NSError* error);
+typedef void(^HEMFacebookHelperSuccessBlockDef)(BOOL success, NSError* error);
 typedef void(^HEMFacebookHelperMeWithPictureGraphAPIBlockDef)(NSDictionary *user, NSString *pictureURL, NSError *error);
 
 @interface HEMFacebookHelper : NSObject
 
 + (instancetype)sharedInstance;
+
+/**
+ *  Define the arary with permissions used by the app.
+ *
+ *  @param permissions NSArray with the permissions.
+ */
 + (void)initWithPermissions:(NSArray *)permissions;
 
+/**
+ *  Check if has an session opened. If the session state is FBSessionStateCreatedTokenLoaded, the active session is re-opened.
+ *
+ *  @return Boolean indicating if the session is opened.
+ */
 - (BOOL)isSessionOpen;
-- (void)closeSession:(HEMFacebookHelperSessionCloseBlockDef)completion;
-- (void)openSession:(HEMFacebookHelperSessionOpenBlockDef)completion;
+
+/**
+ *  Close the active session and clear token information.
+ *
+ *  @param completion success: Boolean indicating if the session was closed.
+ *                      error: NSError instance with any error that can occur when closing the active session.
+ */
+- (void)closeSession:(HEMFacebookHelperSuccessBlockDef)completion;
+
+/**
+ *  Open an session with the permissions defined on +initWithPermission: method.
+ *
+ *  @param completion success: Boolean indicating if the session was opened.
+ *                      error: NSError instance with any error that can occur when opening an active session.
+ */
+- (void)openSession:(HEMFacebookHelperSuccessBlockDef)completion;
+
+/**
+ *  Fetch the information of the logged user.
+ *
+ *  @param completion user: User information based on the permissions defined in +initWithPermissions: method.
+ *              pictureURL: URL of the user's profile photo.
+ *                   error: NSError instance with any error that can occur fetching the user information.
+ */
 - (void)fetchMeWithPictureFromGraphAPI:(HEMFacebookHelperMeWithPictureGraphAPIBlockDef)completion;
 
 @end
